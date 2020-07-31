@@ -14,8 +14,9 @@ resource "aws_lambda_function" instance {
 
   environment {
     variables = {
-      REDIS_HOST = aws_elasticache_cluster.instance.cache_nodes[0].address
-      REDIS_PORT = aws_elasticache_cluster.instance.port
+      REDIS_HOST    = aws_elasticache_cluster.instance.cache_nodes[0].address
+      REDIS_PORT    = aws_elasticache_cluster.instance.port
+      GIPHY_API_KEY = var.giphy_api_key
     }
   }
 }
