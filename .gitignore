@@ -1,2 +1,5 @@
 .idea/
-.terraform/
+terraform/.terraform/
+terraform/*.tfstate*
+terraform/*.tfvars
+node_modules/
