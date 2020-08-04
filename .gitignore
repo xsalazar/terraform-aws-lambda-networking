@@ -1,6 +1,12 @@
+# JetBrains
 .idea/
+
+# Terraform
 terraform/.terraform/
 terraform/*.tfstate*
 terraform/*.tfvars
+terraform/files/
+
+# Express
 node_modules/
 .env
