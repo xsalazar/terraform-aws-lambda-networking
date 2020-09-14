@@ -10,6 +10,11 @@ app.get('/', async (req, res) => {
 
 app.get('/redis', async (req, res) => {
   const { key, value } = req.query
+
+  if (key === undefined || value === undefined) {
+    res.send('Usage: /redis?key={key}&value={value}')
+  }
+
   await set(key, value)
   res.send(`Set ${key} to ${value}`)
 })
