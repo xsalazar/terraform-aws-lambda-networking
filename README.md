@@ -5,6 +5,15 @@
 This project is aimed at outlining a small AWS project in which a core Express application lives inside a Lambda function.
 An API Gateway will forward requests to the Lambda, and the Lambda can either write to a backing Redis database, or make external internet API requests to Giphy for gifs.
 
+## Getting Started
+- Clone this repo
+- Ensure you have filled out the required [inputs](#inputs) below in the environment files
+  - [Getting a Giphy API key](#Giphy-API-Key)
+- Go to the `/app` directory and run `npm install`
+- Go to the `/terraform` directory and run the following
+  - `terraform init`
+  - `terraform apply`
+
 ## Inputs
 - `app/.env`
   - `GIPHY_API_KEY={api_key}`
