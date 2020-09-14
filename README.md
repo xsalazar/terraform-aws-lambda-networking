@@ -34,3 +34,6 @@ api_endpoint = https://1l7isegg92.execute-api.us-west-1.amazonaws.com/active
 
 ## Architecture
 ![](assets/architecture.png)
+
+## Giphy API Key
+You can create an account and obtain a Giphy API key here for personal use: [https://developers.giphy.com/](https://developers.giphy.com/)
