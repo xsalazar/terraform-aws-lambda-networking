@@ -1,0 +1,10 @@
+{
+  "image": "node:16",
+  "forwardPorts": [6379],
+  "extensions": ["esbenp.prettier-vscode"],
+  "features": {
+    "terraform": {
+      "version": "1.0.8"
+    }
+  }
+}
