@@ -16,11 +16,14 @@ async function testRedisReachability() {
 
     const result = await redisClient.ping()
     console.log(`Success: ${result}`)
+    return true
   } catch (e) {
     console.log('🚫 Failed to connect to Redis')
   } finally {
     redisClient.disconnect()
   }
+
+  return false
 }
 
 // This function tests that the Lambda function can make a request to an API on the public internet
@@ -29,12 +32,21 @@ async function testPublicInternetReachability() {
     const octokit = new Octokit()
     const result = await octokit.request('GET /zen')
     console.log(`Success: ${result.data}`)
+    return true
   } catch (e) {
     console.log('🚫 Failed to connect to the public internet')
   }
+
+  return false
 }
 
 exports.handler = async (event, context) => {
-  await testRedisReachability()
-  await testPublicInternetReachability()
+  const isRedisReachable = await testRedisReachability()
+  const isInternetReachable = await testPublicInternetReachability()
+
+  if (isRedisReachable && isInternetReachable) {
+    return '🚀 Everything looks good!'
+  }
+
+  return '😭 Uh oh, check CloudWatch to see what went wrong'
 }
