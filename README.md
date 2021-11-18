@@ -5,22 +5,35 @@ An API Gateway will forward requests to the Lambda, which will then do a sanity 
 
 ## Getting Started
 
-- Clone this repo
-- Ensure you have filled out the required [inputs](#inputs) below in the environment files
-  - [Getting a Giphy API key](#Giphy-API-Key)
-- Go to the `/app` directory and run `npm install`
-- Go to the `/terraform` directory and run the following
-  - `terraform init`
-  - `terraform apply`
+### Updating Application Code
 
-## Output
+The application code that is deployed to Lambda lives in the [./app](./app) directory in the `index.js` file. Currently, this code does two checks:
 
-After running a successful `terraform apply`, the process will output the endpoint URL which can be used to access the sample application as well as the name of the underlying Lambda function.
+- Test whether connections over the private AWS subnet are successful to talk to the Redis database
+- Test whether public HTTP requests on the public internet can be initiated from the Lambda successfully
+
+This repository is configured to use [VSCode's devcontainer support](https://code.visualstudio.com/docs/remote/containers) to allow for local, containerized testing a development. Once VSCode has started the container, exectute the following commands on the container CLI to start Redis:
 
 ```bash
-api_endpoint = "https://hv72yq7w9h.execute-api.us-west-2.amazonaws.com"
-lambda_function = "lambda-function"
+apt-get update
+apt-get install redis
+redis-server
 ```
+
+In VSCode, you can now press `F5` to launch the application or run `cd app && npm start` from a separate CLI window.
+
+### Updating Infrastructure
+
+The infrastructure that manages the AWS Cloud Resources lives in the [./terraform](./terraform) directory. This infrastructure can be deployed in the Actions tab of the repository. If it is the first time the infrastructure is being provisioned, a dummy Hello World application will be deployed to AWS as a placeholder.
+
+All subsequent infrastructure changes can be deployed in the same way.
+
+## CI/CD
+
+This repository has two main ways to facilitate CI/CD built-in to GitHub-native workflows:
+
+- Deploy Application: this workflow will package up the application code into a `.zip` file and deploy it to the running Lambda function via the AWS CLI
+- Deploy Infrastructure: this workflow will utilize Terraform to apply the latest version of the infrastructure to the AWS Cloud
 
 ## Architecture
 
