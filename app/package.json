@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "dependencies": {
-    "@octokit/core": "^4.0.5",
+    "@octokit/core": "^4.1.0",
     "ioredis": "^5.2.3"
   },
   "scripts": {
