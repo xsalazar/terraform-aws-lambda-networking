@@ -6,7 +6,7 @@
   "configurations": [
     {
       "name": "Launch Server",
-      "type": "pwa-node",
+      "type": "node",
       "outputCapture": "std",
       "request": "launch",
       "runtimeArgs": ["run-script", "start"],
