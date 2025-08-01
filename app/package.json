@@ -4,7 +4,7 @@
   "main": "app.js",
   "dependencies": {
     "@octokit/core": "^7.0.3",
-    "ioredis": "^5.6.1"
+    "ioredis": "^5.7.0"
   },
   "scripts": {
     "start": "node -e \"console.log(require('./index').handler());\""
