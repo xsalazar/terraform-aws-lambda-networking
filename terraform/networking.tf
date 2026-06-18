@@ -50,7 +50,7 @@ resource "aws_nat_gateway" "instance" {
 }
 
 resource "aws_eip" "instance" {
-  vpc = true
+  domain = "vpc"
 }
 
 resource "aws_security_group" "lambda_security_group" {
